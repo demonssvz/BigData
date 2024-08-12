@@ -4,6 +4,6 @@ To run :
 3. pig 4c.pig
 
    
-Viewing Output Files in 4c 
-hdfs dfs -ls /outputp4c
-hdfs dfs -cat /outputp4c/part-r-00000
+Viewing Output Files in 4c :
+-   hdfs dfs -ls /outputp4c
+-   hdfs dfs -cat /outputp4c/part-r-00000
