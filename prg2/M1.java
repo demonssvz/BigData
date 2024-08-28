@@ -12,7 +12,7 @@ public class M1 extends Mapper<LongWritable, Text, Text, IntWritable> {
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String line = value.toString();
         String[] fields = line.split(",");
-        if (fields.length > 1 && fields[2]!="Year") {
+       if (fields.length > 3 && !fields[2].equals("Year")) {
             try {
                 int temperature = Integer.parseInt(fields[3]);
                 context.write(new Text(fields[2]), new IntWritable(temperature));
