@@ -26,9 +26,12 @@ SELECT
     END AS RECOMMENDED_INT, 
     GENRE_ID 
 FROM movie_log 
-WHERE activity IN ('START_MOVIE', 'BROWSE_MOVIE', 'COMPLETED_MOVIE', 'RATE_MOVIE') 
-    AND GENRE_ID IS NOT NULL 
+WHERE activity IN (4,5,2,1) 
+      AND GENRE_ID IS NOT NULL 
 LIMIT 25;
+
+ 
+
 
 
 -- Query to get the most recent ratings for each movie
@@ -39,7 +42,7 @@ WITH MostRecentRatings AS (
         MOVIE_TITLE, 
         RATINGS, 
         RECOMMENDED, 
-        ROW_NUMBER() OVER (PARTITION BY MOVIE_ID ORDER BY USER_ID) AS rn 
+        ROW_NUMBER() OVER (PARTITION BY MOVIE_ID ) AS rn 
     FROM movie_log 
     WHERE RATINGS IS NOT NULL
 ) 
