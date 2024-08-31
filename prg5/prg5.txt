@@ -18,6 +18,8 @@ LOAD DATA LOCAL INPATH 'p5.csv' INTO TABLE movie_log;
 
 -- Query to select activity, recommended status as integer, and genre_id
 SELECT 
+    USER_ID, 
+    MOVIE_ID,
     activity, 
     CASE 
         WHEN RECOMMENDED = 'Y' THEN 1 
