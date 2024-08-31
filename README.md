@@ -35,7 +35,7 @@ jar -cvf recordcount.jar -C folder/ .
 ### 4.Prepare HDFS
  
  ```
-hdfs dfs -mkdir input
+hdfs dfs -mkdir /input
  ```
 
 ### 5.Upload your CSV dataset to the HDFS input directory:
