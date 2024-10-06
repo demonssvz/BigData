@@ -1,0 +1,28 @@
+Prg 1 and Prg 2 
+	mkdir folder
+	javac -classpath $(hadoop classpath) -d folder RecordCountMapper.java RecordCountReducer.java RecordCount.java
+	jar -cvf recordcount.jar -C folder/ .
+	hdfs dfs -mkdir /input
+	hdfs dfs -put dataset124.csv /input/data.csv
+	yarn jar recordcount.jar <packagename>.RecordCount /input /output
+	hdfs dfs -ls /output
+	hdfs dfs -cat /output/part-r-00000
+	hadoop job -status jobid
+	hadoop job -kill jobid 
+
+Prg 3 
+	
+	hdfs dfs -put ratings.csv 
+	pig (opens grunt > and execute commands)
+Prg 4 
+	pig 4a.pig
+	pig 4b.pig
+	pig 4c.pig
+	
+	hdfs dfs -ls /outputp4c
+	hdfs dfs -cat /outputp4c/part-r-00000
+
+Prg 5 
+	hdfs dfs -put ratings.csv 
+	hive
+		> put queries 
