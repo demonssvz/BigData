@@ -66,8 +66,8 @@ check the status of a job using the Hadoop command-line
 
  
  ```
-hadoop application -status <applicationId>
-hadoop job -list
+hadoop job -status <jobId>
+
  ```
 
 ### 9.Terminating the Job :
