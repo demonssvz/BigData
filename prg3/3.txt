@@ -1,12 +1,12 @@
 -- Task a: List All Movies and the Number of Ratings
 ratings = LOAD '/ratings.csv' USING PigStorage(',') AS (movieId:int, title:chararray, userId:int, rating:float, genreId:int);
-grouped_ratings = GROUP ratings BY movieId;
+grouped_ratings = GROUP ratings BY (movieId,title);
 movie_rating_count = FOREACH grouped_ratings GENERATE group AS movieId, COUNT(ratings) AS numRatings;
 DUMP movie_rating_count;
 
 -- Task b: List All Users Who Have Rated the Same Movie and Find the Number of Ratings
 ratings = LOAD '/ratings.csv' USING PigStorage(',') AS (movieId:int, title:chararray, userId:int, rating:float, genreId:int);
-grouped_by_movie = GROUP ratings BY movieId;
+grouped_by_movie = GROUP ratings BY (movieId,title);
 user_rating_count_by_movie = FOREACH grouped_by_movie {
     users = ratings.userId;
     GENERATE group AS movieId, users, COUNT(users) AS numRatings;
@@ -21,7 +21,7 @@ ratings = LOAD '/ratings.csv' USING PigStorage(',') AS (movieId:int, title:chara
 DESCRIBE ratings;
 
 -- Task c: List All Users Who Have Rated at Least One Movie
-unique_users = FOREACH (GROUP ratings BY userId) GENERATE group AS userId;
+unique_users = FOREACH (GROUP ratings BY userId) GENERATE group AS userId,COUNT(ratings) AS numRatings ;
 DUMP unique_users;
 
 -- Task d: Find the Count of Movies with Ratings Greater Than 3
