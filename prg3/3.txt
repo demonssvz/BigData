@@ -16,11 +16,6 @@ DUMP user_rating_count_by_movie;
 -- Task c: List All Users Who Have Rated at Least One Movie
 -- Load data once with explicit schema
 ratings = LOAD '/ratings.csv' USING PigStorage(',') AS (movieId:int, title:chararray, userId:int, rating:float, genreId:int);
-
--- Check the schema
-DESCRIBE ratings;
-
--- Task c: List All Users Who Have Rated at Least One Movie
 unique_users = FOREACH (GROUP ratings BY userId) GENERATE group AS userId,COUNT(ratings) AS numRatings ;
 DUMP unique_users;
 
